@@ -1,0 +1,143 @@
+ body {
+   margin: 0;
+   font-family: 'Roboto', sans-serif;
+   background: linear-gradient(135deg, #2b1055, #7597de);
+   color: white;
+ }
+
+ .container {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 20px;
+ }
+
+ .navbar {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 20px 0;
+ }
+
+ .navbar .logo {
+   display: flex;
+   align-items: center;
+ }
+
+ .navbar .logo i {
+   font-size: 24px;
+   margin-right: 10px;
+ }
+
+ .navbar .logo span {
+   font-size: 24px;
+   font-weight: bold;
+ }
+
+ .navbar .menu {
+   display: flex;
+   gap: 20px;
+ }
+
+ .navbar .menu a {
+   color: white;
+   text-decoration: none;
+   font-size: 16px;
+ }
+
+ .hero {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 50px 0;
+ }
+
+ .hero .content {
+   max-width: 600px;
+ }
+
+ .hero .content h2 {
+   font-size: 24px;
+   color: #ffb400;
+   margin: 0;
+ }
+
+ .hero .content h1 {
+   font-size: 48px;
+   margin: 10px 0;
+ }
+
+ .hero .content p {
+   font-size: 18px;
+   margin: 20px 0;
+ }
+
+ .hero .content .btn {
+   background-color: #ffb400;
+   color: white;
+   padding: 15px 30px;
+   border: none;
+   border-radius: 5px;
+   font-size: 16px;
+   cursor: pointer;
+ }
+
+ .hero .image {
+   position: relative;
+ }
+
+ .hero .image img {
+   max-width: 100%;
+ }
+
+ .hero .image .activity {
+   position: absolute;
+   top: 20px;
+   right: 20px;
+   background: linear-gradient(135deg, #6a11cb, #2575fc);
+   padding: 10px 20px;
+   border-radius: 10px;
+   display: flex;
+   align-items: center;
+   gap: 10px;
+ }
+
+ .hero .image .activity i {
+   font-size: 24px;
+ }
+
+ .hero .image .activity span {
+   font-size: 16px;
+ }
+
+ .hero .image .recovery {
+   position: absolute;
+   bottom: 20px;
+   left: 20px;
+   background: linear-gradient(135deg, #6a11cb, #2575fc);
+   padding: 20px;
+   border-radius: 10px;
+ }
+
+ .hero .image .recovery h3 {
+   margin: 0;
+   font-size: 16px;
+ }
+
+ .hero .image .recovery .chart {
+   display: flex;
+   align-items: flex-end;
+   gap: 10px;
+   margin-top: 10px;
+ }
+
+ .hero .image .recovery .chart div {
+   width: 20px;
+   height: 50px;
+   background-color: #333;
+   border-radius: 5px;
+ }
+
+ .hero .image .recovery .chart .highlight {
+   background-color: #ffb400;
+   height: 100px;
+ }
