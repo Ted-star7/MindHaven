@@ -35,7 +35,7 @@
 
  .navbar .menu {
    display: flex;
-   gap: 20px;
+   gap: 40px;
  }
 
  .navbar .menu a {
@@ -43,7 +43,9 @@
    text-decoration: none;
    font-size: 16px;
  }
-
+.navbar .menu a:hover{
+  color: #ffb400;
+}
  .hero {
    display: flex;
    align-items: center;
@@ -58,7 +60,7 @@
  .hero .content h2 {
    font-size: 24px;
    color: #ffb400;
-   margin: 0;
+   margin-top: -50px;
  }
 
  .hero .content h1 {
@@ -79,6 +81,10 @@
    border-radius: 5px;
    font-size: 16px;
    cursor: pointer;
+ }
+
+ .btn{
+  margin-top: 20px;
  }
 
  .hero .image {
