@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ConsumeService {
-  private url: string = ""; 
+  private url: string = "https://mindhaven.onrender.com"; 
 
   constructor(private httpClient: HttpClient) {}
 

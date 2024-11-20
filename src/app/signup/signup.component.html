@@ -1,5 +1,6 @@
 <div class="container">
-  <!-- Left Section -->
+  <button class="back-button" (click)="navigateBack()">Back to Home</button>
+
   <div class="left-section">
     <h1>Welcome to</h1>
     <h2>MindHaven</h2>
@@ -12,14 +13,12 @@
     </button>
   </div>
 
-  <!-- Right Section -->
   <div class="right-section">
     <div class="form-container" [class.sign-in-active]="isSignIn">
-      <!-- Sign Up Form -->
       <form
         *ngIf="!isSignIn"
-        (ngSubmit)="onSubmitSignUp()"
-        class="form-content"
+        (ngSubmit)="onSubmitSignUp(signUpForm)"
+        #signUpForm="ngForm"
       >
         <h2>Create an Account</h2>
         <input
@@ -63,11 +62,14 @@
             <a href="#">Privacy Policy</a>.
           </label>
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit" [disabled]="isLoading">Sign Up</button>
       </form>
 
-      <!-- Sign In Form -->
-      <form *ngIf="isSignIn" (ngSubmit)="onSubmitSignIn()" class="form-content">
+      <form
+        *ngIf="isSignIn"
+        (ngSubmit)="onSubmitSignIn(signInForm)"
+        #signInForm="ngForm"
+      >
         <h2>Welcome Back</h2>
         <input
           type="email"
@@ -83,7 +85,7 @@
           name="password"
           required
         />
-        <button type="submit">Sign In</button>
+        <button type="submit" [disabled]="isLoading">Sign In</button>
       </form>
     </div>
   </div>
