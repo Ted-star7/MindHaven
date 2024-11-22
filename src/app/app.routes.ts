@@ -10,6 +10,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 export const routes: Routes = [
   {path: '', component: DashboardComponent},
+  // { path: '**', redirectTo: '', pathMatch: 'full' },
   {path: 'therapy-centre', component: TherapyCentreComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'therapists', component: TherapistsComponent},

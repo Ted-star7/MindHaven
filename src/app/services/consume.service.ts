@@ -4,58 +4,59 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ConsumeService {
-  private url: string = "https://mindhaven.onrender.com"; 
+  private url: string = ''; // Base API URL
 
   constructor(private httpClient: HttpClient) {}
 
-  // Method for POST request 
+  // POST Request
   public postRequest(endpoint: string, data: any, token: string | null): Observable<any> {
     const headers = new HttpHeaders({
-      "Authorization": `Bearer ${token}`,
-      "Content-type": "application/json",
-      "ngrok-skip-browser-warning": "6024"
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      'ngrok-skip-browser-warning': '6024',
     });
-    return this.httpClient.post(`${this.url}${endpoint}`, FormData, { headers })
+
+    return this.httpClient
+      .post(`${this.url}${endpoint}`, data, { headers })
       .pipe(catchError(this.handleError));
   }
-  
-  // Method for POST request 
-  public postFormData(endpoint: string, formData: any, token: string | null = null): Observable<any> {
+
+  // POST FormData
+  public postFormData(endpoint: string, formData: FormData, token: string | null = null): Observable<any> {
     let headers = new HttpHeaders({
-      "ngrok-skip-browser-warning": "6024"
+      'ngrok-skip-browser-warning': '6024',
     });
 
     if (token) {
-      headers = headers.append("Authorization", `Bearer ${token}`);
+      headers = headers.append('Authorization', `Bearer ${token}`);
     }
 
-    return this.httpClient.post(`${this.url}${endpoint}`, formData, { headers })
+    return this.httpClient
+      .post(`${this.url}${endpoint}`, formData, { headers })
       .pipe(catchError(this.handleError));
   }
 
-  // Method for GET request
+  // GET Request
   public getRequest(endpoint: string, token: string | null): Observable<any> {
     const headers = new HttpHeaders({
-      "Authorization": `Bearer ${token}`,
-      "ngrok-skip-browser-warning": "6024"
+      Authorization: `Bearer ${token}`,
+      'ngrok-skip-browser-warning': '6024',
     });
-    return this.httpClient.get(`${this.url}${endpoint}`, { headers })
+
+    return this.httpClient
+      .get(`${this.url}${endpoint}`, { headers })
       .pipe(catchError(this.handleError));
   }
 
-  // Error handling method
+  // Error Handler
   private handleError(error: HttpErrorResponse): Observable<never> {
-    let errorMessage = "An unknown error occurred!";
-    if (error.error instanceof ErrorEvent) {
-      // Client-side error
-      errorMessage = `Client-side error: ${error.error.message}`;
-    } else {
-      // Server-side error
-      errorMessage = `Server-side error: ${error.status} - ${error.message}`;
-    }
+    const errorMessage =
+      error.error instanceof ErrorEvent
+        ? `Client-side error: ${error.error.message}`
+        : `Server-side error: ${error.status} - ${error.message}`;
     console.error(errorMessage);
     return throwError(errorMessage);
   }

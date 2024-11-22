@@ -2,23 +2,32 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { ConsumeService } from '../services/consume.service';
-import { SessionService } from '../services/session.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ConsumeService } from '../services/consume.service';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
   standalone: true,
-  imports: [FormsModule, CommonModule, MatSnackBarModule,  HttpClientModule], 
-  providers: [MatSnackBar], 
+  imports: [FormsModule, CommonModule, MatSnackBarModule, HttpClientModule],
+  providers: [MatSnackBar],
 })
 export class SignupComponent {
-  isSignIn = false;
-  isLoading = false;
+  isSignIn = false; // Toggle between Sign Up and Sign In forms
+  isLoading = false; // Loader status for API calls
 
+
+  constructor(
+    private router: Router,
+    private consumeService: ConsumeService,
+    private sessionService: SessionService,
+    private snackBar: MatSnackBar
+  ) {}
+
+  
   // Sign Up Form Fields
   signUpData = {
     fullName: '',
@@ -34,24 +43,25 @@ export class SignupComponent {
     password: '',
   };
 
-  constructor(
-    private router: Router,
-    private consumeService: ConsumeService,
-    private sessionService: SessionService,
-    private snackBar: MatSnackBar
-  ) {}
+  
 
-  // Toggle between Sign Up and Sign In forms
+  /**
+   * Toggle between Sign Up and Sign In forms
+   */
   toggleForm(): void {
     this.isSignIn = !this.isSignIn;
   }
 
-  // Navigate back to the home page
+  /**
+   * Navigate back to the home page
+   */
   navigateBack(): void {
     this.router.navigate(['/']);
   }
 
-  // Reset the Sign Up form
+  /**
+   * Reset the Sign Up form to its initial state
+   */
   resetSignUpForm(): void {
     this.signUpData = {
       fullName: '',
@@ -62,7 +72,9 @@ export class SignupComponent {
     };
   }
 
-  // Reset the Sign In form
+  /**
+   * Reset the Sign In form to its initial state
+   */
   resetSignInForm(): void {
     this.signInData = {
       email: '',
@@ -70,7 +82,10 @@ export class SignupComponent {
     };
   }
 
-  // Sign Up 
+  /**
+   * Handle Sign Up form submission
+   * @param form - Angular Form object
+   */
   onSubmitSignUp(form: NgForm): void {
     if (form.invalid) {
       this.snackBar.open('Please fill out all required fields correctly.', 'Close', {
@@ -98,8 +113,9 @@ export class SignupComponent {
         this.snackBar.open('Sign up successful!', 'Close', { duration: 3000 });
         this.router.navigate(['/home']);
       },
-      () => {
+      (error) => {
         this.isLoading = false;
+        console.error('Sign up error:', error);
         this.snackBar.open('Sign up failed. Please try again.', 'Close', {
           duration: 5000,
         });
@@ -108,7 +124,10 @@ export class SignupComponent {
     );
   }
 
-  // Sign In 
+  /**
+   * Handle Sign In form submission
+   * @param form - Angular Form object
+   */
   onSubmitSignIn(form: NgForm): void {
     if (form.invalid) {
       this.snackBar.open('Please enter valid credentials.', 'Close', { duration: 3000 });
@@ -141,8 +160,9 @@ export class SignupComponent {
           });
         }
       },
-      () => {
+      (error) => {
         this.isLoading = false;
+        // console.error('Login error:', error);
         this.snackBar.open('Login failed. Please check your credentials.', 'Close', {
           duration: 5000,
         });
