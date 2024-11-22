@@ -1,6 +1,8 @@
 <div class="container">
+  <!-- Back Button -->
   <button class="back-button" (click)="navigateBack()">Back to Home</button>
 
+  <!-- Left Section (Image and Welcome Message) -->
   <div class="left-section">
     <h1>Welcome to</h1>
     <h2>MindHaven</h2>
@@ -13,8 +15,10 @@
     </button>
   </div>
 
+  <!-- Right Section (Forms) -->
   <div class="right-section">
     <div class="form-container" [class.sign-in-active]="isSignIn">
+      <!-- Sign Up Form -->
       <form
         *ngIf="!isSignIn"
         (ngSubmit)="onSubmitSignUp(signUpForm)"
@@ -57,14 +61,15 @@
             name="agreedToTerms"
             required
           />
-          <label for="terms">
-            I agree to the <a href="#">Terms of Service</a> and
-            <a href="#">Privacy Policy</a>.
-          </label>
+          <label for="terms"
+            >I agree to the <a href="#">Terms of Service</a> and
+            <a href="#">Privacy Policy</a>.</label
+          >
         </div>
         <button type="submit" [disabled]="isLoading">Sign Up</button>
       </form>
 
+      <!-- Sign In Form -->
       <form
         *ngIf="isSignIn"
         (ngSubmit)="onSubmitSignIn(signInForm)"

@@ -1,3 +1,4 @@
+
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
@@ -6,22 +7,41 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 .container {
-  background: #ffffff;
-  border-radius: 1rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
   max-width: 950px;
   width: 100%;
   height: 97vh;
+  background: #ffffff;
+  border-radius: 1rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  margin-left: 160px;
-  margin-top: 10px;
-  
+  margin: 10px 160px;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Back Button */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 0.75rem 2rem;
+  background-color: #7b5cf2;
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 20%;
+}
+
+.back-button:hover {
+  background-color: #6a4de2;
 }
 
 .left-section {
@@ -33,14 +53,19 @@ body {
   align-items: center;
   padding: 2rem;
   flex: 1 1 50%;
-  text-align: center;
   height: 100%;
+  text-align: center;
 }
 
 .left-section img {
   margin: 1.5rem 0;
   border-radius: 0.5rem;
   width: 80%;
+  transition: transform 0.3s ease;
+}
+
+.left-section:hover img {
+  transform: scale(1.05);
 }
 
 .toggle-button {
@@ -61,12 +86,13 @@ body {
 }
 
 .right-section {
-  padding: 2rem;
   flex: 1 1 50%;
+  padding: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  background: #f7f9fc;
 }
 
 .form-container {
@@ -86,10 +112,18 @@ input {
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #7b5cf2;
+  outline: none;
 }
 
 button {
-  padding: 0.75rem;
+  padding: 1rem 2rem;
   background-color: #7b5cf2;
   color: white;
   border: none;
@@ -97,6 +131,8 @@ button {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 10px;
+  width: 50%;
 }
 
 button:hover {
@@ -106,10 +142,13 @@ button:hover {
 .checkbox-container {
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-right: 30px;
 }
 
 .checkbox-container label {
   margin-left: 0.5rem;
+  margin-bottom: 17px;
   font-size: 0.875rem;
   color: #555;
 }
@@ -118,6 +157,7 @@ button:hover {
   .container {
     flex-direction: column;
     height: auto;
+    margin: 0;
   }
 
   .left-section,
@@ -128,5 +168,12 @@ button:hover {
   .form-container {
     width: 100%;
     max-width: 100%;
+  }
+
+  .back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
   }
 }
